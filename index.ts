@@ -5,7 +5,7 @@ import { ProjectModel } from "./models/project";
 import { ObjectId } from "mongoose";
 import { ObjectiveModel } from "./models/objective";
 
-
+//METODOLOGIA ON TO MANY #1
 const crearProyectoConObjetivos = async () => {
   const proyectoCreado = await ProjectModel.create({
     nombre: "Proyecto Mision TIC",
@@ -20,7 +20,6 @@ const crearProyectoConObjetivos = async () => {
     tipo: Enum_TipoObjetivo.general,
     proyecto: proyectoCreado._id
   });
-
   const objetivoEspecifico1 = await ObjectiveModel.create({
     descripcion: 'Este es el objetivo especifico 1',
     tipo: Enum_TipoObjetivo.especifico,
@@ -31,14 +30,47 @@ const crearProyectoConObjetivos = async () => {
     tipo: Enum_TipoObjetivo.especifico,
     proyecto: proyectoCreado._id
   });
-} 
+}
+
+const consultarProyectosConObjetivos = async () => {
+  const proyecto = await ProjectModel.findOne({ _id: '62862c8a3d804b900a2b1ebb' })
+  const objetivos = await ObjectiveModel.find({ project: '62862c8a3d804b900a2b1ebb' })
+  const proyectoConObjetivos = { proyecto, objetivos: objetivos }
+  console.log('El proyecto con objetivos es: ', proyectoConObjetivos)
+}
+
+//METODOLOGIA ONE TO MANY #2
+const crearProyectoConObjetivos2 = async () => {
+  const objetivoGeneral = await ObjectiveModel.create({
+    descripcion: 'Este es el objetivo general',
+    tipo: Enum_TipoObjetivo.general,
+  });
+  const objetivoEspecifico1 = await ObjectiveModel.create({
+    descripcion: 'Este es el objetivo especifico 1',
+    tipo: Enum_TipoObjetivo.especifico,
+  });
+  const objetivoGEspecifico2 = await ObjectiveModel.create({
+    descripcion: 'Este es el objetivo especifico 2',
+    tipo: Enum_TipoObjetivo.especifico,
+  });
+
+  const proyectoCreado = await ProjectModel.create({
+    nombre: "Proyecto Mision TIC",
+    fechaInicio: new Date('2022/06/01'),
+    fechaFin: new Date('2022/12/24'),
+    presupuesto: 120000,
+    lider: '6283b74fc4748499fb90bfda',
+    objetivos: [objetivoGeneral._id, objetivoEspecifico1._id, objetivoGEspecifico2._id]
+  });
+
+}
 
 const main = async () => {
   await conectarBD();
-  const proyecto =await ProjectModel.findOne({_id: '62862c8a3d804b900a2b1ebb' })
-  const objetivos = await ObjectiveModel.find({project: '62862c8a3d804b900a2b1ebb'})
-  const proyectoConObjetivos = { proyecto, objetivos: objetivos}
-  console.log('El proyecto con objetivos es: ', proyectoConObjetivos)
+
+  const proyecto = await ProjectModel.find({ id: '6286353ac1efedaa5dc8c29f'}).populate('objetivos')
+  console.log('Proyecto encontrado ', JSON.stringify(proyecto));
+
 }
 
 main()
