@@ -64,12 +64,37 @@ const crearProyectoConObjetivos2 = async () => {
   });
 
 }
+const consultarProyectosConObjetivos2 = async () => {
+  const proyecto = await ProjectModel.find({ id: '6286353ac1efedaa5dc8c29f'}).populate('objetivos')
+  console.log('Proyecto encontrado ', JSON.stringify(proyecto));
+}
+
+//METODOLOGIA ONE TO MANY #3
+const crearProyectoConObjetivo3 = async () => {
+  const proyecto = await ProjectModel.create({
+    nombre: "Proyecto Mision TIC",
+    fechaInicio: new Date('2022/06/01'),
+    fechaFin: new Date('2022/12/24'),
+    presupuesto: 120000,
+    lider: '6283b74fc4748499fb90bfda',
+    objetivos: [
+      {descripcion: 'este es el objetivo general', tipo: Enum_TipoObjetivo.general},
+      {descripcion: 'este es el objetivo especifico 1', tipo: Enum_TipoObjetivo.especifico},
+      {descripcion: 'este es el objetivo especifico 2', tipo: Enum_TipoObjetivo.especifico},
+    ]
+  })
+}
+const consultarProyectosConObjetivos3 = async () => {
+  const proyecto = await ProjectModel.find({ id: '6286353ac1efedaa5dc8c29f'})
+  console.log('Proyecto encontrado ', proyecto);
+}
 
 const main = async () => {
   await conectarBD();
 
-  const proyecto = await ProjectModel.find({ id: '6286353ac1efedaa5dc8c29f'}).populate('objetivos')
-  console.log('Proyecto encontrado ', JSON.stringify(proyecto));
+  
+
+  
 
 }
 
