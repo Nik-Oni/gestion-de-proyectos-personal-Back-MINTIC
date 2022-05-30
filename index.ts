@@ -6,8 +6,8 @@ import conectarBD from './db/db'
 import { typeDefs } from './graphql/types'
 import { resolvers } from './graphql/resolvers'
 
-
 dotenv.config();
+
 const server = new ApolloServer({
     typeDefs: typeDefs,
     resolvers: resolvers,

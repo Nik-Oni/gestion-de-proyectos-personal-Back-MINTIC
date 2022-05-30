@@ -4,7 +4,7 @@ import { UserModel } from "../models/user"
 const resolvers = {
     Query:{
         Usuarios: async (parent, args) => {
-            const usuarios = await UserModel.find()
+            const usuarios = await UserModel.find();
             return usuarios;
         },
         Usuario: async (parent, args) =>{
