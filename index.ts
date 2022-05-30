@@ -6,7 +6,7 @@ import conectarBD from './db/db'
 import { typeDefs } from './graphql/types'
 import { resolvers } from './graphql/resolvers'
 
-//Al dia
+
 dotenv.config();
 const server = new ApolloServer({
     typeDefs: typeDefs,
@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.listen({ port: process.env.PORT || 4000 }, async () => {
+app.listen({ port: process.env.POR || 4000 }, async () => {
     await conectarBD();
     await server.start();
 
