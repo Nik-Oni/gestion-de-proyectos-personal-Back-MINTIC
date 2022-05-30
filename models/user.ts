@@ -46,7 +46,7 @@ const userSchema = new Schema<User>({
         type: String,
         required: true,
         enum: Enum_EstadoUsuario,
-        default: Enum_EstadoUsuario.pendiente,
+        default: Enum_EstadoUsuario.PENDIENTE,
     },
 })
 
