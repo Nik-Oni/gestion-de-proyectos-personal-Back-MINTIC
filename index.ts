@@ -9,20 +9,21 @@ import { resolvers } from './graphql/resolvers';
 dotenv.config();
 
 const server = new ApolloServer({
-    typeDefs: typeDefs,
-    resolvers: resolvers,
-})
+  typeDefs: typeDefs,
+  resolvers: resolvers,
+});
 
 const app = express();
 
 app.use(express.json());
+
 app.use(cors());
 
-app.listen({ port: process.env.POR || 4000 }, async () => {
-    await conectarBD();
-    await server.start();
+app.listen({ port: process.env.PORT || 4000 }, async () => {
+  await conectarBD();
+  await server.start();
 
-    server.applyMiddleware({ app })
+  server.applyMiddleware({ app });
 
-    console.log(`Server ready`)
-})
+  console.log('servidor listo');
+});
