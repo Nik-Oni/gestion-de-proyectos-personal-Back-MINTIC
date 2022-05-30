@@ -41,7 +41,7 @@ const projectSchema = new Schema<Project>({
     fase: {
         type: String,
         enum: Enum_FaseProyecto,
-        default: Enum_FaseProyecto.NULA,
+        default: Enum_FaseProyecto.NULO,
     },
     lider: {
         type: Schema.Types.ObjectId,
