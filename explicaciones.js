@@ -1,9 +1,9 @@
-import conectarBD from "./db/db";
-import { UserModel } from "./models/usuario/usuario";
-import { Enum_Rol, Enum_TipoObjetivo } from "./models/enums/enums";
-import { ProjectModel } from "./models/proyecto/proyecto";
+import conectarBD from "./db/db.js";
+import { UserModel } from "./models/usuario/usuario.js";
+import { Enum_Rol, Enum_TipoObjetivo } from "./models/enums/enums.js";
+import { ProjectModel } from "./models/proyecto/proyecto.js";
 import { ObjectId } from "mongoose";
-import { ObjectiveModel } from "./models/objective";
+import { ObjectiveModel } from "./models/objective.js";
 
 //METODOLOGIA ON TO MANY #1
 const crearProyectoConObjetivos = async () => {

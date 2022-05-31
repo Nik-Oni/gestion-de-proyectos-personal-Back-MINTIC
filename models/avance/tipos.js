@@ -1,5 +1,4 @@
 import {gql} from 'apollo-server-express';
-import { tipos } from '../../graphql/types';
 
 const tiposAvance = gql `
     type Avance{
