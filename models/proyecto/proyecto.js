@@ -4,8 +4,8 @@ import { UserModel } from "../usuario/usuario.js";
 
 const { Schema, model } = mongoose;
 
-const projectSchema =
-  new Schema ({
+const projectSchema = new Schema(
+  {
     nombre: {
       type: String,
       required: true,
@@ -51,7 +51,23 @@ const projectSchema =
         },
       },
     ],
-  });
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
+
+projectSchema.virtual("avances", {
+  ref: "avances",
+  localField: "_id",
+  foreignField: "proyecto",
+});
+projectSchema.virtual("inscripciones", {
+  ref: "Inscripcion",
+  localField: "_id",
+  foreignField: "proyecto",
+});
 
 const ProjectModel = model("Proyecto", projectSchema);
 
