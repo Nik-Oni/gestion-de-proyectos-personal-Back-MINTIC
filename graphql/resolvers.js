@@ -2,10 +2,15 @@ import { resolversProyecto } from "../models/proyecto/resolvers.js";
 import { resolversUsuario } from "../models/usuario/resolver.js";
 import { resolversAvance } from "../models/avance/resolvers.js";
 import { resolverInscripciones } from "../models/inscripcion/resolvers.js";
+import { resolversAutenticacion } from "./auth/resolvers.js";
 
-const resolversGlobales = {
-    
-}
-export {resolversGlobales}
+const resolversGlobales = {};
+export { resolversGlobales };
 
-export const resolvers = [ resolversUsuario, resolversProyecto, resolversAvance, resolverInscripciones];
+export const resolvers = [
+  resolversUsuario,
+  resolversProyecto,
+  resolversAvance,
+  resolverInscripciones,,
+  resolversAutenticacion,
+];
