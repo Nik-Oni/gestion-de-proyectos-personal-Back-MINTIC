@@ -31,6 +31,6 @@ const avanceSchema =
     },
   });
 
-const ModeloAvance = model("avances", avanceSchema);
+const ModeloAvance = model("Avance", avanceSchema);
 
 export { ModeloAvance };
